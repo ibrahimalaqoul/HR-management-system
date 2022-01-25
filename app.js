@@ -1,18 +1,18 @@
 'use strict'
 let myArray=[];
-function Employee(EmployeeID, FullName, Department, Level,Salary) {
+function Employee(EmployeeID, FullName, Department, Level) {
     this.employeeId = EmployeeID;
     this.name= FullName;
     this.employeeDepartment = Department;
     this.employeeLevel = Level;
     this.img = 'ImageURL';
-    this.result= Salary;
+    this.result= 0;
     myArray.push(this);
 }
 
 Employee.prototype.SalaryOfEmploee = function () {
-    let Salary =0;
-    if (this.employeeLevel == "Senior") {
+        let Salary =0;
+        if (this.employeeLevel == "Senior") {
         Salary = Math.random() * (2000 - 1500) + 1500;
     } else
         if (this.employeeLevel == "Mid-Senior") {
@@ -21,8 +21,8 @@ Employee.prototype.SalaryOfEmploee = function () {
             Salary = Math.random() * (1000 - 500) + 500;
         }
         let taks=(Salary*0.075);
-        let result = Salary-taks; 
-    return  result;
+         this.result = Salary-taks; 
+    return  Salary-taks;
 }
 let firstEmployee= new Employee(1000,"Ghazi Samer","Administration","Senior");
 let secondEmployee= new Employee(1001,"Lana Ali	","Finance","Senior");
@@ -33,7 +33,7 @@ let sixthEmployee= new Employee(1005,"Rana Saleh","Development","Junior");
 let seventhEmployee= new Employee(1006,"Hadi Ahmad","Finance","Mid-Senior");
 
 Employee.prototype.rander=function(){       
-    let result=this.SalaryOfEmploee();
+   let result = this.SalaryOfEmploee();
 document.write (`<p> ${this.name}</p>`);
 document.write (` ${result}`);
 }
