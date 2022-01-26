@@ -8,7 +8,7 @@ function Employee(EmployeeID, FullName, Department, Level, img) {
     this.employeeDepartment = Department;
     this.employeeLevel = Level;
     this.image = img;
-    this.result = this.secondEmployee();
+    this.result = this.SalaryOfEmploee();
     myArray.push(this);
 }
 
