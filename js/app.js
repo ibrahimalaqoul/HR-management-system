@@ -8,7 +8,9 @@ function Employee(EmployeeID, FullName, Department, Level, img) {
     this.employeeDepartment = Department;
     this.employeeLevel = Level;
     this.image = img;
-    this.result = 0;
+    this.result = this.SalaryOfEmploee();
+
+
     myArray.push(this);
 }
 
@@ -39,6 +41,28 @@ Employee.prototype.render = function () {
       info.style.padding = "20px";
 
 }
+
+        function saveToLocalStorage() {
+            let stringifedData = JSON.stringify(myArray);
+            localStorage.setItem("Employee", stringifedData);
+        }
+        function getData() {
+            let data = localStorage.getItem("Employee");
+            let parseData = JSON.parse(data);
+            if (parseData != null) {
+                myArray=[];
+                console.log(parseData);
+                for (let i = 0; i < parseData.length; i++) {
+                    console.log(parseData[i]);
+                    new Employee(parseData[i].employeeId, parseData[i].name, parseData[i].employeeDepartment, parseData[i].employeeLevel, parseData[i].image)
+                }
+            }
+            renderAll();  
+        }
+
+
+
+
 Employee.prototype.SalaryOfEmploee = function () {
     let Salary = 0;
     if (this.employeeLevel == "Senior") {
@@ -73,9 +97,16 @@ function handleSubmit(event) {
     let randomID =newId();
     let newEmploee = new Employee(randomID,fullName, DepartmentName, LevelName, thImage);
     console.log(newEmploee);
-    newEmploee.render();
-}
 
-for (let i = 0; i < myArray.length; i++) {
-    myArray[i].render();
+    saveToLocalStorage();
+    newEmploee.render();
+
 }
+function renderAll(){
+    for (let i = 0; i < myArray.length; i++) {
+      myArray[i].render(); 
+ } 
+ }
+ getData();
+//  renderAll();
+
