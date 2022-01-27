@@ -9,6 +9,8 @@ function Employee(EmployeeID, FullName, Department, Level, img) {
     this.employeeLevel = Level;
     this.image = img;
     this.result = this.SalaryOfEmploee();
+
+
     myArray.push(this);
 }
 
@@ -37,6 +39,7 @@ Employee.prototype.render = function () {
       info.style.width= "250px";
       info.style.margin ="20px";
       info.style.padding = "20px";
+
 }
 
         function saveToLocalStorage() {
@@ -94,6 +97,7 @@ function handleSubmit(event) {
     let randomID =newId();
     let newEmploee = new Employee(randomID,fullName, DepartmentName, LevelName, thImage);
     console.log(newEmploee);
+
     saveToLocalStorage();
     newEmploee.render();
 
@@ -105,3 +109,4 @@ function renderAll(){
  }
  getData();
 //  renderAll();
+
